@@ -15,9 +15,9 @@ from langchain.agents import create_agent
 #===============front end======================
 st.title("AI RESUME GENERATOR")
 
-GOOGLE_API_KEY=st.sidebar.text_input("GOOGLE API KEY",type='password'
-GROQ_API_KEY=st.sidebar.text_input("GROQ API KEY",type='password'
-TAVILY_API_KEY=st.sidebar.text_input("TAVILY API KEY",type='password'
+GOOGLE_API_KEY=st.sidebar.text_input("GOOGLE API KEY",type='password')
+GROQ_API_KEY=st.sidebar.text_input("GROQ API KEY",type='password')
+TAVILY_API_KEY=st.sidebar.text_input("TAVILY API KEY",type='password')
 
 if not GOOGLE_API_KEY:
   st.warning("provide GOOGLE API KEY")
