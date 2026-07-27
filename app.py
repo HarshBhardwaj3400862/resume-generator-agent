@@ -39,6 +39,7 @@ if not GOOGLE_API_KEY:
 model2 = ChatGroq(
     model = "qwen/qwen3.6-27b",
     api_key = GROQ_API_KEY
+)
 
     agent = create_agent(
     model = model1,
