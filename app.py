@@ -42,7 +42,7 @@ model1 = ChatGoogleGenerativeAI(
     model = "gemini-2.5-flash",
     google_api_key = GOOGLE_API_KEY
 )
-
+(
 try:
     response = model1.invoke(prompt)
     st.write(response.content)
