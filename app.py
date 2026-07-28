@@ -21,6 +21,7 @@ TAVILY_API_KEY = st.sidebar.text_input("TAVILY Api Key", type = 'password')
 
 if not GOOGLE_API_KEY:
   st.warning("Provide Google API key")
+  st.stop()
 
 
 # ============= MODEL and AGENT CODE====================
@@ -38,13 +39,17 @@ def search_latest_news_jobs(query):
 
 # Step 4: Model and Agent creation
 model1 = ChatGoogleGenerativeAI(
-    model = "gemini-2.5-flash-lite",
+    model = "gemini-2.5-flash",
     google_api_key = GOOGLE_API_KEY
 )
 
-model2 = ChatGroq(
-    model = "qwen/qwen3.6-27b",
-    api_key = GROQ_API_KEY
+try:
+    response = model1.invoke(prompt)
+    st.write(response.content)
+except Exception as e:
+    import traceback
+    traceback.print_exc()
+    st.exception(e)
 )
 
 
@@ -68,7 +73,7 @@ def prompt_generator():
   design professional"""
 
   response = model1.invoke(prompt)
-  prompt_ans = response.content[-1]['text']
+  prompt_ans = response.content
   # print(prompt_ans)
 
   file_name = 'prompt.txt'
@@ -100,7 +105,7 @@ profile_url = "https://s7d1.scene7.com/is/image/wbcollab/India_PM_Narendra_Modi-
 
 user_info = st.text_input("Give your information: ")
 user_photo = st.sidebar.file_uploader("Upload pic", type = 'image/jpeg')
-
+tmp_path = None
 if user_photo is not None:
   # Create a temporary file
   with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as tmp:
