@@ -38,7 +38,7 @@ def search_latest_news_jobs(query):
 
 # Step 4: Model and Agent creation
 model1 = ChatGoogleGenerativeAI(
-    model = "gemini-3.5-flash-lite",
+    model = "gemini-2.5-flash-lite",
     google_api_key = GOOGLE_API_KEY
 )
 
